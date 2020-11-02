@@ -1,0 +1,363 @@
+import java.util.Arrays;
+
+public class ConnectFour 
+{
+	private final char[][] grid;
+	private final int width;
+	private final int height;
+	private int lastCol = -1;
+	private int lastRow = -1;
+
+	public ConnectFour() 
+	{
+		width = 7;
+		height = 6;
+		grid = new char[height][];
+		
+		for (int i = 0; i < height; i++) 
+		{
+			Arrays.fill(grid[i] = new char[width], '.');
+		}
+	}
+
+	private boolean checkWin(int rowNum, int colNum) 
+	{
+		char player = grid[rowNum][colNum]; 
+		int count = 0;
+		
+		//checkes horizental row
+		for (int i = 0; i < width; i++) 
+		{
+			if (grid[rowNum][i] == player)
+				count++;
+			else
+				count = 0;
+			
+			if (count >= 4)
+				return true;
+		}
+
+		// checkes vertical row
+		for (int i = 0; i < height; i++)
+		{
+			if (grid[i][colNum] == player)
+				count++;
+			else
+				count = 0;
+			if (count >= 4)
+				return true;
+		}
+		
+		count = 0;
+		
+		//checkes Diag
+		int sum = 0;
+		int colTemp = 0;
+		sum = colNum + rowNum;
+
+		if (sum < 3)
+		{
+		} 
+		else if (sum > 8) 
+		{
+		} 
+		else if (sum == 3) 
+		{
+			colTemp = 0;
+			for (int a = 3; a >= 0; a--) 
+			{
+				if (grid[a][colTemp] == player)
+				{
+					count++;
+				}
+				else
+				{
+					count = 0;
+				}
+				colTemp++;
+				if (count >= 4) 
+				{
+					return true;
+				}
+			}
+		} 
+		
+		else if (sum == 4) 
+		{
+			colTemp = 0;
+			for (int a = 4; a >= 0; a--)
+			{
+				if (grid[a][colTemp] == player)
+				{
+					count++;
+				} 
+				else
+				{
+					count = 0;
+				}
+				colTemp++;
+				if (count >= 4)
+				{
+					return true;
+				}
+			}
+		} 
+		
+		else if (sum == 5) 
+		{
+			colTemp = 0;
+			for (int a = 5; a >= 0; a--) 
+			{
+				if (grid[a][colTemp] == player) 
+				{
+					count++;
+				} 
+				else 
+				{
+					count = 0;
+				}
+				colTemp++;
+				if (count >= 4)
+				{
+					return true;
+				}
+			}
+		} 
+		
+		else if (sum == 6)
+		{
+			colTemp = 1;
+			for (int a = 5; a >= 0; a--)
+			{
+				if (grid[a][colTemp] == player) 
+				{
+					count++;
+				} 
+				else 
+				{
+					count = 0;
+				}
+				colTemp++;
+				if (count >= 4) 
+				{
+					return true;
+				}
+			}
+		} 
+		
+		else if (sum == 7) 
+		{
+			colTemp = 2;
+			for (int a = 5; a >= 1; a--) 
+			{
+				if (grid[a][colTemp] == player) 
+				{
+					count++;
+				}
+				else 
+				{
+					count = 0;
+				}
+				colTemp++;
+				if (count >= 4) 
+				{
+					return true;
+				}
+			}
+		}
+		
+		else if (sum == 8) 
+		{
+			colTemp = 3;
+			for (int a = 5; a >= 2; a--) 
+			{
+				if (grid[a][colTemp] == player) 
+				{
+					count++;
+				}
+				else 
+				{
+					count = 0;
+				}
+				colTemp++;
+				if (count >= 4) 
+				{
+					return true;
+				}
+			}
+		}
+		
+		count = 0;
+		
+		//checks other dia
+		sum = colNum - rowNum;
+		if (sum < -2)
+		{
+		} 
+		else if (sum > 3) 
+		{
+		} 
+		else if (sum == -2)
+		{
+			colTemp = 3;
+			for (int a = 5; a >= 2; a--)
+			{
+				if (grid[a][colTemp] == player)
+				{
+					count++;
+				}
+				else
+				{
+					count = 0;
+				}
+				colTemp--;
+				if (count >= 4) 
+				{
+					return true;
+				}
+			}
+		} 
+		
+		else if (sum == -1)
+		{
+			colTemp = 4;
+			for (int a = 5; a >= 1; a--) 
+			{
+				if (grid[a][colTemp] == player) 
+				{
+					count++;
+				} 
+				else 
+				{
+					count = 0;
+				}
+				colTemp--;
+				if (count >= 4) 
+				{
+					return true;
+				}
+			}
+		} 
+		else if (sum == 0) 
+		{
+			colTemp = 5;
+			for (int a = 5; a >= 0; a--)
+			{
+				if (grid[a][colTemp] == player) 
+				{
+					count++;
+				}
+				else
+				{
+					count = 0;
+				}
+				colTemp--;
+				if (count >= 4)
+				{
+					return true;
+				}
+			}
+		}
+		
+		else if (sum == 1) 
+		{
+			colTemp = 6;
+			for (int a = 5; a >= 0; a--) 
+			{
+				if (grid[a][colTemp] == player)
+				{
+					count++;
+				}
+				else 
+				{
+					count = 0;
+				}
+				colTemp--;
+				if (count >= 4)
+				{
+					return true;
+				}
+			}
+			
+		} 
+		
+		else if (sum == 2) 
+		{
+			colTemp = 6;
+			for (int a = 4; a >= 0; a--)
+			{
+				if (grid[a][colTemp] == player)
+				{
+					count++;
+				} 
+				else 
+				{
+					count = 0;
+				}
+				colTemp--;
+				if (count >= 4) 
+				{
+					return true;
+				}
+			}
+		}
+		
+		else if (sum == 3)
+		{
+			colTemp = 6;
+			for (int a = 4; a >= 0; a--) 
+			{
+				if (grid[a][colTemp] == player) 
+				{
+					count++;
+				} else 
+				{
+					count = 0;
+				}
+				colTemp--;
+				if (count >= 4) 
+				{
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+
+	public void chooseAndDrop(char symbol, int c)
+	{
+		do 
+		{
+			int col = c;
+			if (!(0 <= col && col < width)) 
+			{
+				System.out.println("Column must be between 0 and " + (width - 1));
+				continue;
+			}
+			for (int h = height - 1; h >= 0; h--)
+			{
+				if (grid[h][col] == '.') {
+					grid[lastRow = h][lastCol = col] = symbol;
+					return;
+				}
+			}
+			System.out.println("Column " + col + " is full.");
+		}
+		while (true);
+	}
+	
+	public boolean isWinnigPlay(int xSpot, int ySpot) 
+	{
+		boolean win = checkWin(ySpot, xSpot);
+		if (win == true) 
+		{
+			return true;
+		} 
+		else
+		{
+			return false;
+		}
+	}
+
+}
